@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from page_generation import generate_page
+from page_generation import generate_page, generate_pages_recursive
 
 
 def delete_public_directory(public_dir):
@@ -30,9 +30,9 @@ def copy_static_to_public(static_dir, public_dir):
 def main():
     public_dir = "./public"
     static_dir = "./static"
-    content_file = "/home/vegasleonidas/site_generator/Content/index.md"
+    content_file = "/home/vegasleonidas/site_generator/Content"
     template_file = "/home/vegasleonidas/site_generator/template.html"
-    output_file = os.path.join(public_dir, "index.html")
+    output_file = public_dir
 
     # Step 1: Delete anything in the public directory
     print(f"Deleting contents of {public_dir}...")
@@ -44,7 +44,7 @@ def main():
 
     # Step 3: Generate a page from content/index.md using template.html
     print(f"Generating page from {content_file} to {output_file} using {template_file}...")
-    generate_page(content_file, template_file, output_file)
+    generate_pages_recursive(content_file, template_file, output_file)
 
     print("Website generation completed!")
 
